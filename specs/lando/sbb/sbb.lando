@@ -1,0 +1,55 @@
+subsystem Smart Ballot Box (SBB)
+The software, firmware, and hardware that make up the BSV smart ballot
+box.
+
+// @todo kiniry This top-level system specification should either
+// import all of the related specifications in this directory, or
+// explain how they are all inter-dependent.
+
+component Smart Ballot Box API
+  The top-level API that is independent of the hardware and the type of the ballot box.
+// @design kiniry Is this feature meant to provide a placeholder for a
+// SBB that may be able to perform tabulation?  Our DEF CON 2019 SBB
+// need not tabulate.
+  Perform tabulation!
+  Is this barcode valid?
+
+component Barcode
+  How long is this barcode?
+  Is this barcode valid?
+  What is the maximum number of bits this barcode can encode?
+
+component Ballot Box
+  A low-level API for a specific ballot box and its hardware.
+  Initialize this ballot box!
+  Deposit this ballot!
+  Reject this ballot!
+  Does the current ballot have a barcode?
+  What are the contents of the barcode of the currently held ballot?
+  Is the cast button pressed?
+  Is the spoil button pressed?
+  Is the cast button released?
+  Is the spoil button released?
+  Turn the spoil button light on!
+  Turn the spoil button light off!
+  Turn the cast button light on!
+  Turn the cast button light off!
+  Tell the motor to rotate forward!
+  Tell the motor to continuously rotate backward!
+  Stop the motor!
+  Display this text!
+  Ballot detected?
+  Ballot inserted?
+  Spoil this ballot!
+  Cast this ballot!
+// @design dmz the following query is really asking whether, if a ballot is
+// in the machine, it has already been spoiled or rejected for being invalid; 
+// we should address this (both here and in the state machine) for the
+// next milestone.
+  Is the ballot spoiled?
+  Go to standby!
+  Reset the ballot detect timeout!
+  Has the ballot detect timeout expired?
+  Reset the cast or spoil timeout!
+  Has the cast or spoil timeout expired?
+  The motor can only rotate forward or backward.

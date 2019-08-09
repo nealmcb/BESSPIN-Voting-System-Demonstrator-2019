@@ -1,0 +1,80 @@
+# We don't need cache yet
+#cache:
+#  key: ${CI_COMMIT_REF_SLUG}
+#  paths:
+#    - TODO
+
+#-----------------------------------------------------------------------------#
+#
+# General startup commands
+#
+#-----------------------------------------------------------------------------#
+before_script:
+    - git submodule init
+    - git submodule update
+
+#-----------------------------------------------------------------------------#
+#
+# Top level tests
+#
+#-----------------------------------------------------------------------------#
+SbbFpga_LLVM:
+  script:
+    - export USE_CLANG=yes
+    - nix-shell --run 'make fpga'
+    - unset USE_CLANG
+  tags: ["voting-system"]
+
+SbbSim_LLVM:
+  script:
+    - export USE_CLANG=yes
+    - nix-shell --run 'make sim'
+    - unset USE_CLANG
+  tags: ["voting-system"]
+
+
+SbbFpga_GCC:
+  script:
+    - nix-shell --run 'make fpga'
+  tags: ["voting-system"]
+
+SbbSim_GCC:
+  script:
+    - nix-shell --run 'make sim'
+  tags: ["voting-system"]
+
+Bottom:
+  script:
+    - export TARGET=bottom
+    - nix-shell --run 'make bottom_all'
+  tags: ["voting-system"]
+
+Typecheck:
+  script:
+    - export TARGET=verification
+    - nix-shell --run 'make typecheck_all'
+  tags: ["voting-system"]
+
+Verify:
+  script:
+    - export TARGET=verification
+    - nix-shell --run 'make verify_all'
+  tags: ["voting-system"]
+
+FreeRTOS:
+  script:
+    - export TARGET=freertos
+    - nix-shell --run 'make freertos_all'
+  tags: ["voting-system"]
+
+HostTests:
+  script:
+    - export TARGET=hosttests
+    - nix-shell --run 'make hosts_all'
+  tags: ["voting-system"]
+
+Simulator:
+  script:
+    - export TARGET=sim
+    - nix-shell --run 'make sim_all'
+  tags: ["voting-system"]
