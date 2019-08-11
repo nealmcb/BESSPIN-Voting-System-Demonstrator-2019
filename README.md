@@ -137,9 +137,8 @@ how testers’ exploits can be contributed.
       by SRI and the University of Cambridge.
 - A blackbox proprietary secure RISC-V processor.
 
-3. Experiment with an existing exploit in the `Attacker-Quickstart` directory,
-   or write an entirely new
-   exploit.  In order to test the exploit, you can either run it in
+3. Experiment with an existing exploit in the [Attacker-Quickstart](Attacker-Quickstart/README.md)
+   directory, or write an entirely new exploit.  In order to test the exploit, you can either run it in
    software simulation using Verilator, or you can load it onto the
    target machine you have chosen.  We suggest first simulating or
    loading it into a baseline RISC-V processor.
